@@ -3,6 +3,7 @@ module tt_um_calculator_chip (
     input logic [7:0] NumIn,
     input logic [1:0] OpIn,
     input logic Enter,
+    input logic ena,
     input logic rst_n,
 
     input logic clk
