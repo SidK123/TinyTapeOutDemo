@@ -3,9 +3,9 @@ module tt_um_calculator_chip (
     input logic [7:0] NumIn,
     input logic [1:0] OpIn,
     input logic Enter,
-    input logic Reset,
+    input logic rst_n,
 
-    input logic clock
+    input logic clk
 );
 
     enum logic [2:0] {START, CALCULATE1, CALCULATE2, CALCULATE3, CALCULATE4, WAIT} currState, nextState1;
@@ -13,8 +13,8 @@ module tt_um_calculator_chip (
 
     assign NumOut = state;
 
-    always_ff @(posedge clock, posedge Reset) begin
-      if(Reset) begin
+    always_ff @(posedge clk, negedge rst_n) begin
+        if(~rst_n) begin
         currState <= START;
         state <= 8'b0;
       end
